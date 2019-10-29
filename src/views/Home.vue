@@ -1,7 +1,24 @@
 <template>
-  <div v-on:scroll.passive="onScroll" class="home">
+  <div class="home">
     <!-- searchbar -->
-    <AppSearch @searchResults="getSearchedImages" />
+    <AppSearch
+      @searchResults="getSearchedImages"
+      @searchText="searchText = $event"
+      @currentPage="currentPage = $event"
+    />
+
+    <!-- partition -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      width="100%"
+      height="50"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      class="partition"
+    >
+      <path d="M0 0 50 100 50 100 100 0 Z" />
+    </svg>
 
     <!-- images stats -->
     <p v-if="images">
@@ -27,7 +44,7 @@
         :key="image.id"
         @click="onImageSelect(index)"
       >
-        <img :src="composeImageUrl(image)" :alt="image.title" />
+        <img :src="image | composeImageUrl" :alt="image.title" />
       </div>
     </div>
 
@@ -39,6 +56,9 @@
       @indexChanged="selected = $event"
       @modalClosed="isModalOpen = false"
     />
+
+    <!-- lazy loading -->
+    <AppObserver v-on:intersect="intersected" />
   </div>
 </template>
 
@@ -47,15 +67,20 @@ import { Vue, Component } from "vue-property-decorator";
 // components
 import AppSearch from "@/components/AppSearch.vue";
 import AppModal from "@/components/AppModal.vue";
+import AppObserver from "@/components/AppObserver.vue";
 // services
 import ImageService from "@/services/image.service";
 const imageService = new ImageService();
 // interfaces
-import { ImageResponse } from "@/interfaces/interface";
+import { ImageResponse, ImagesData } from "@/interfaces/interface";
 
 @Component({
   name: "home",
-  components: { AppSearch, AppModal },
+  components: {
+    AppSearch,
+    AppModal,
+    AppObserver
+  },
   data() {
     return {
       selected: null,
@@ -69,49 +94,51 @@ import { ImageResponse } from "@/interfaces/interface";
   },
   filters: {
     numberWithCommas(value: string | number): string | number {
-      if (value) return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      else return value;
+      return value
+        ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        : value;
     }
   },
   methods: {
-    getSearchedImages(images): void {
+    getSearchedImages(images: ImagesData): void {
       this.$data.total = images.photos.total;
       this.$data.pages = images.photos.pages;
-      this.$data.images = images.photos.photo;
+      this.$data.images = [...images.photos.photo];
     },
-    composeImageUrl(image): string {
-      return `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_z.jpg`;
-    },
-    onImageSelect(index): void {
+    onImageSelect(index: number): void {
       this.$data.selected = index;
       this.$data.isModalOpen = true;
     },
-    onScroll(event) {
-      let bottomOfWindow =
-        document.documentElement.clientTop < window.innerHeight;
-      if (bottomOfWindow) {
-        // console.log("scrolling");
-        // console.log(this.$route);
-        //   imageService
-        //     .getImages("cute puppy", this.$data.currentPage)
-        //     .then(res => {
-        //       this.$data.total = res.data.photos.total;
-        //       this.$data.pages = res.data.photos.pages;
-        //       this.$data.images = res.data.photos.photo;
-        //     })
-        //     .catch((err: string) => console.log(err));
+    intersected(): void {
+      if (this.$data.currentPage < this.$data.pages) {
+        this.$data.currentPage++;
+
+        imageService
+          .getImages(this.$data.searchText, this.$data.currentPage)
+          .then((res: ImageResponse) => {
+            this.$data.total = res.data.photos.total;
+            this.$data.pages = res.data.photos.pages;
+            this.$data.images = [
+              ...this.$data.images,
+              ...res.data.photos.photo
+            ];
+          })
+          .catch((err: string): void => console.error(err));
       }
     }
   },
-  beforeMount() {
+  created() {
+    this.$data.currentPage = 1;
+    this.$data.searchText = "cute puppy";
+
     imageService
-      .getImages("cute puppy", this.$data.currentPage)
-      .then(res => {
+      .getImages(this.$data.searchText, this.$data.currentPage)
+      .then((res: ImageResponse) => {
         this.$data.total = res.data.photos.total;
         this.$data.pages = res.data.photos.pages;
         this.$data.images = res.data.photos.photo;
       })
-      .catch((err: string) => console.log(err));
+      .catch((err: string): void => console.error(err));
   }
 })
 export default class Home extends Vue {}

@@ -2,7 +2,7 @@
 
 # Vue Image Gallery
 
-Live demo deployed to GitHub:
+Live demo deployed to GitHub: 
 
 Image search using [Flickr API ![Flickr API](./src/assets/images/flickr.png)](https://www.flickr.com/)
 For documentation see: https://www.flickr.com/services/api/
@@ -15,11 +15,10 @@ For documentation see: https://www.flickr.com/services/api/
 
 ## Prerequisites
 
--   Results displayed as tiles which load gradually using infinite scroll
+-   Results displayed as tiles which load gradually using infinite scroll (lazy loading)
 -   Switches to slider mode when tile is clicked
 -   Clicked image is displayed enlarged
 -   Next and previous images are displayed as clickable thumbnails
--   Error handling (ie search input is empty or failed http request)
 
 ## Usage
 
@@ -34,7 +33,7 @@ $ npm run serve
 $ npm install --save axios
 ```
 
--------------------
+---
 
 ## Project setup
 

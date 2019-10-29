@@ -12,7 +12,9 @@ import AppNavbar from "@/components/AppNavbar.vue";
 
 @Component({
   name: "app",
-  components: { AppNavbar }
+  components: {
+    AppNavbar
+  }
 })
 export default class App extends Vue {}
 </script>

@@ -1,19 +1,5 @@
 <template>
   <div class="about">
-    <!-- partition -->
-    <svg
-      id="curveUpColor"
-      xmlns="http://www.w3.org/2000/svg"
-      version="1.1"
-      width="100%"
-      height="50"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      class="partition swatch"
-    >
-      <path d="M0 0 100 100 -50 100 -100 100 Z" />
-    </svg>
-
     <!-- header -->
     <div class="about__header">
       <h1>Yes, the router is working!</h1>
@@ -25,14 +11,13 @@
 
     <!-- partition -->
     <svg
-      id="curveDownColor"
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       width="100%"
       height="50"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
-      class="partition swatch"
+      class="partition"
     >
       <path d="M0 0 50 100 50 100 100 0 Z" />
     </svg>
@@ -54,22 +39,18 @@
         <li>Switches to slider mode when tile is clicked</li>
         <li>Clicked image is displayed enlarged</li>
         <li>Next and previous images are displayed as clickable thumbnails</li>
-        <li>
-          Error handling (ie search input is empty or failed http request)
-        </li>
       </ul>
 
       <span>Project Configuaration:</span>
       <ul>
-        <li>
-          Results displayed as tiles which load gradually using infinite scroll
-        </li>
-        <li>Switches to slider mode when tile is clicked</li>
-        <li>Clicked image is displayed enlarged</li>
-        <li>Next and previous images are displayed as clickable thumbnails</li>
-        <li>
-          Error handling (ie search input is empty or failed http request)
-        </li>
+        <kbd>
+          <li>create vue vue-image-gallery</li>
+          <li>Switches to slider mode when tile is clicked</li>
+          <li>Clicked image is displayed enlarged</li>
+          <li>
+            Next and previous images are displayed as clickable thumbnails
+          </li>
+        </kbd>
       </ul>
     </div>
   </div>

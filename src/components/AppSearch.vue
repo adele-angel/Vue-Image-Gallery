@@ -11,12 +11,12 @@
       <button class="search__btn">Search</button>
 
       <!-- error message -->
-      <p class="search-error" v-if="errors.input">{{ errors.input }}</p>
+      <p class="search-error" v-if="error !== ''">{{ error }}</p>
     </form>
 
     <!-- preloader -->
     <div v-else-if="loading" class="preloader">
-      <img src="@/assets/images/preloader.gif" alt="" />
+      <img src="@/assets/images/preloader.gif" alt="Preloader" />
     </div>
   </div>
 </template>
@@ -26,6 +26,8 @@ import { Vue, Component } from "vue-property-decorator";
 // services
 import ImageService from "@/services/image.service";
 const imageService = new ImageService();
+// interfaces
+import { ImageResponse } from "../interfaces/interface";
 
 @Component({
   name: "search",
@@ -33,27 +35,32 @@ const imageService = new ImageService();
     return {
       loading: false,
       search: "",
-      errors: {}
+      currentPage: 1,
+      error: ""
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(): void {
       this.$data.loading = true;
-      this.$data.errors = {};
+      this.$data.error = "";
+
       if (this.$data.search.trim() === "") {
         this.$data.loading = false;
-        this.$data.errors.input = "Input field is empty";
-        this.$data.search = "";
+        this.$data.error = "Input field is empty";
       } else {
         imageService
-          .getImages(this.$data.search, 1)
-          .then(res => {
+          .getImages(this.$data.search, this.$data.currentPage)
+          .then((res: ImageResponse) => {
+            this.$data.currentPage = 1;
             this.$data.loading = false;
+
+            this.$emit("searchText", this.$data.search);
+            this.$emit("searchResults", res.data);
+            this.$emit("currentPage", this.$data.currentPage);
+
             this.$data.search = "";
-            const images = res.data;
-            this.$emit("searchResults", images);
           })
-          .catch((err: string) => (this.$data.errors.http = err));
+          .catch((err: string): void => console.error(err));
       }
     }
   }

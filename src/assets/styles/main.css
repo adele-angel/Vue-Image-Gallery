@@ -53,40 +53,38 @@ nav .nav__link {
 }
 
 /* home */
-.home {
-	height: 85vh;
-	overflow-y: scroll;
+.home .partition {
+	fill: rgb(192, 241, 237);
+	margin-bottom: 1rem;
 }
 
 /* search */
 .search {
 	background-color: rgb(192, 241, 237);
-	margin-bottom: 1rem;
-	padding: 1rem;
+	padding-top: 2rem;
 }
 .search .search__btn {
 	text-decoration: none;
 	background-color: teal;
 	color: white;
 	border: 1px solid teal;
-	margin: 0 0.5rem;
-	padding: 0.5rem 2rem;
+	margin: 0 0.25rem;
+	padding: 0.5rem 1.5rem;
 }
 .search input {
 	border: 1px solid none;
 	margin: 0 0.5rem;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 }
 .search .search__btn:hover {
 	cursor: pointer;
-	background-color: black;
-	border: 1px solid black;
+	background-color: rgb(8, 53, 53);
 }
 .search .search-error {
 	width: 20%;
-	background-color: rgb(226, 211, 211);
-	border: 1px solid teal;
-	font-weight: bold;
+	background-color: rgb(248, 241, 241);
+	border: 1px solid rgb(228, 207, 207);
+	border-radius: 10px;
 	margin: 0.5rem auto 0;
 	padding: 0.5rem 1rem;
 }
@@ -102,11 +100,6 @@ nav .nav__link {
 	justify-content: space-evenly;
 	align-content: center;
 	padding: 0.5rem;
-	overflow-y: scroll;
-}
-.gallery::-webkit-scrollbar {
-	width: 0px;
-	background: transparent;
 }
 .gallery .gallery__thumb {
 	display: flex;
@@ -192,6 +185,9 @@ nav .nav__link {
 .page-not-found {
 	background-color: white;
 }
+.page-not-found {
+	padding: 5rem;
+}
 .about h1,
 .page-not-found h1 {
 	font-family: "Lobster", cursive;
@@ -203,6 +199,9 @@ nav .nav__link {
 	font-size: 1.25rem;
 	background-color: rgb(177, 216, 216);
 	padding: 2rem 0 0.5rem;
+}
+.page-not-found p {
+	padding: 2rem;
 }
 .about .partition {
 	fill: rgb(177, 216, 216);
@@ -239,4 +238,17 @@ nav .nav__link {
 }
 .about .about__content ul li {
 	font-size: 0.85rem;
+}
+.about .about__content ul:last-of-type {
+	background-color: rgb(235, 235, 235);
+	border-radius: 10px;
+	margin: 0.75rem 5rem 2rem 1rem;
+	padding: 1rem;
+	list-style: none;
+}
+.about .about__content ul:last-of-type li {
+	padding: 0.1rem;
+}
+.about .about__content ul:last-of-type li::before {
+	content: "$ ";
 }
