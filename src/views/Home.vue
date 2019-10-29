@@ -24,14 +24,14 @@
     <p v-if="images">
       Total images found:
       <strong>{{ total | numberWithCommas }}</strong>
-      <span class="page-indicator" v-if="images.length > 0"
-        >showing
+      <span class="page-indicator" v-if="images.length > 0">
+        showing
         {{
           (currentPage > 1 ? "pages 1-" + currentPage : "page 1")
             | numberWithCommas
         }}
-        out of {{ pages | numberWithCommas }}</span
-      >
+        out of {{ pages | numberWithCommas }}
+      </span>
     </p>
 
     <div v-if="images" class="gallery">
@@ -123,7 +123,7 @@ import { ImageResponse, ImagesData } from "@/interfaces/interface";
               ...res.data.photos.photo
             ];
           })
-          .catch((err: string): void => console.error(err));
+          .catch((err: string) => err);
       }
     }
   },
@@ -138,7 +138,7 @@ import { ImageResponse, ImagesData } from "@/interfaces/interface";
         this.$data.pages = res.data.photos.pages;
         this.$data.images = res.data.photos.photo;
       })
-      .catch((err: string): void => console.error(err));
+      .catch((err: string) => err);
   }
 })
 export default class Home extends Vue {}

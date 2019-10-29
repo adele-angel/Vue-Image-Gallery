@@ -60,7 +60,7 @@ import { ImageResponse } from "../interfaces/interface";
 
             this.$data.search = "";
           })
-          .catch((err: string): void => console.error(err));
+          .catch((err: string) => err);
       }
     }
   }
