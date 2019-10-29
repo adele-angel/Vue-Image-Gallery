@@ -1,4 +1,4 @@
-<img src="./src/assets/images/logo.png" align="right" />
+<img src="favicon.ico" align="right" />
 
 # Vue Image Gallery
 
