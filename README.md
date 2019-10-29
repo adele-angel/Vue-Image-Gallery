@@ -2,6 +2,8 @@
 
 # Vue Image Gallery
 
+Live demo deployed to GitHub Pages: https://adele-angel.github.io/Vue-Image-Gallery/
+
 Image search using [Flickr API](https://www.flickr.com/)
 For documentation see: https://www.flickr.com/services/api/
 
