@@ -21,7 +21,7 @@ For documentation see: https://www.flickr.com/services/api/
 ## Usage
 
 ```
-$ cd project-folder
+$ cd /project-folder
 $ npm run serve
 ```
 
