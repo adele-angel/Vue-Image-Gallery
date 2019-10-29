@@ -57,7 +57,7 @@
       @modalClosed="isModalOpen = false"
     />
 
-    <!-- lazy loading -->
+    <!-- infinite scroll -->
     <AppObserver v-on:intersect="intersected" />
   </div>
 </template>
