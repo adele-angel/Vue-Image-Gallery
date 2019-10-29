@@ -40,18 +40,6 @@
         <li>Clicked image is displayed enlarged</li>
         <li>Next and previous images are displayed as clickable thumbnails</li>
       </ul>
-
-      <span>Project Configuaration:</span>
-      <ul>
-        <kbd>
-          <li>create vue vue-image-gallery</li>
-          <li>Switches to slider mode when tile is clicked</li>
-          <li>Clicked image is displayed enlarged</li>
-          <li>
-            Next and previous images are displayed as clickable thumbnails
-          </li>
-        </kbd>
-      </ul>
     </div>
   </div>
 </template>
