@@ -2,8 +2,6 @@
 
 # Vue Image Gallery
 
-Live demo deployed to GitHub: 
-
 Image search using [Flickr API ![Flickr API](./src/assets/images/flickr.png)](https://www.flickr.com/)
 For documentation see: https://www.flickr.com/services/api/
 
