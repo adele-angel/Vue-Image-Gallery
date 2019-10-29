@@ -1,28 +1,15 @@
 <template>
-  <div id="modal" class="modal" v-if="isModalOpen">
-    <div class="modal-content">
-      <span class="close" @click="closeModal()">&times;</span>
-      <div class="modal-images">
-        <div class="model-image-previous" @click="sliderActions('prev')">
-          <img
-            :src="
-              composeImageUrl(images[idx > 0 ? idx - 1 : images.length - 1])
-            "
-            alt="Previous image"
-          />
-        </div>
-        <div class="modal-image-selected">
-          <img :src="composeImageUrl(images[idx])" :alt="images[idx].title" />
-        </div>
-        <div class="model-image-next" @click="sliderActions('next')">
-          <img
-            :src="
-              composeImageUrl(images[idx < images.length - 1 ? idx + 1 : 0])
-            "
-            alt="Next image"
-          />
-        </div>
-      </div>
+  <div v-if="images" class="gallery">
+    <!-- image thumbnail list -->
+    <div
+      class="gallery__thumb"
+      v-for="(image, index) in images"
+      :item="image"
+      :selected="index"
+      :key="image.id"
+      @click="onImageSelect(index)"
+    >
+      <img :src="composeImageUrl(image)" :alt="image.title" />
     </div>
   </div>
 </template>
@@ -30,7 +17,7 @@
 <script>
 import { Vue, Component } from "vue-property-decorator";
 // interfaces
-import { Image } from "@/interfaces/image.interface";
+import { Image } from "@/interfaces/interface";
 
 @Component({
   name: "modal",

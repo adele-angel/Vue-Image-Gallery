@@ -31,10 +31,12 @@ nav .nav__brand {
 	padding: 1rem;
 }
 nav .nav__brand img {
-	height: 2rem;
+	height: 3rem;
 	width: auto;
+	vertical-align: baseline;
 }
-nav .nav__brand:hover {
+nav .nav__brand:hover,
+nav .nav__link:hover {
 	color: rgb(13, 85, 85);
 }
 nav .nav__links {
@@ -44,11 +46,10 @@ nav .nav__links {
 }
 nav .nav__link {
 	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
 	color: darkcyan;
 	margin: 0 1rem;
-}
-nav .nav__link:hover {
-	color: rgb(13, 85, 85);
 }
 
 /* home */
@@ -186,26 +187,56 @@ nav .nav__link:hover {
 	height: auto;
 }
 
-/* about */
-.about {
-	padding: 3rem;
-}
-.about h1 {
-	font-family: "Lobster", cursive;
-}
-
-/* page not found */
+/* about & page not found */
+.about,
 .page-not-found {
-	padding: 3rem;
+	background-color: white;
 }
+.about h1,
 .page-not-found h1 {
 	font-family: "Lobster", cursive;
+	text-transform: capitalize;
+	margin-bottom: 1.5rem;
 }
+.about .about__header,
 .page-not-found p {
-	font-size: 2rem;
-	margin-top: 3rem;
+	font-size: 1.25rem;
+	background-color: rgb(177, 216, 216);
+	padding: 2rem 0 0.5rem;
 }
+.about .partition {
+	fill: rgb(177, 216, 216);
+}
+.about .about__header {
+	padding: 1rem auto;
+}
+.about .link,
 .page-not-found .link {
+	font-size: 1.35rem;
+	font-weight: bolder;
 	color: teal;
 	text-decoration: none;
+}
+.about .link:hover,
+.page-not-found .link:hover {
+	color: rgb(15, 92, 92);
+}
+.about .link {
+	display: block;
+	padding: 0.2rem;
+}
+.about .about__content {
+	text-align: left;
+	padding-left: 3rem;
+}
+.about .about__content span {
+	font-size: 1.2rem;
+	font-weight: bolder;
+	color: teal;
+}
+.about .about__content ul {
+	padding: 0.5rem 0 2rem 2.5rem;
+}
+.about .about__content ul li {
+	font-size: 0.85rem;
 }

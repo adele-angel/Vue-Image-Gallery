@@ -51,7 +51,7 @@ import AppModal from "@/components/AppModal.vue";
 import ImageService from "@/services/image.service";
 const imageService = new ImageService();
 // interfaces
-import { ImageResponse } from "@/interfaces/image.interface";
+import { ImageResponse } from "@/interfaces/interface";
 
 @Component({
   name: "home",

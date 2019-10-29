@@ -15,7 +15,9 @@
     </form>
 
     <!-- preloader -->
-    <div v-else-if="loading" class="preloader">Loading...</div>
+    <div v-else-if="loading" class="preloader">
+      <img src="@/assets/images/preloader.gif" alt="" />
+    </div>
   </div>
 </template>
 
