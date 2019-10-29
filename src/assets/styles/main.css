@@ -239,16 +239,3 @@ nav .nav__link {
 .about .about__content ul li {
 	font-size: 0.85rem;
 }
-.about .about__content ul:last-of-type {
-	background-color: rgb(235, 235, 235);
-	border-radius: 10px;
-	margin: 0.75rem 5rem 2rem 1rem;
-	padding: 1rem;
-	list-style: none;
-}
-.about .about__content ul:last-of-type li {
-	padding: 0.1rem;
-}
-.about .about__content ul:last-of-type li::before {
-	content: "$ ";
-}
